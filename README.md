@@ -1,97 +1,320 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Here is a clean, production-ready `README.md` file version of your content with improved structure, consistency, and formatting:
 
-# Getting Started
+---
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+# 📱 BHC Jobs – React Native Job Portal App
 
-## Step 1: Start Metro
+A full-featured **job portal mobile application** built using **React Native CLI**, connecting job seekers with verified employers in Saudi Arabia.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+The app delivers a modern experience with authentication, job discovery, company insights, and seamless dark/light theming.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
+## ✨ Features
+
+* 🔐 **Authentication System**
+
+  * Sign up, login, OTP verification
+  * Password recovery
+
+* 🔎 **Job Discovery**
+
+  * Browse by industry
+  * Search & filter jobs
+  * Personalized recommendations
+
+* 🏢 **Company Profiles**
+
+  * View companies
+  * Explore open positions
+
+* 🌓 **Dark / Light Mode**
+
+  * System preference detection
+  * Manual toggle support
+
+* 📱 **Responsive UI**
+
+  * Optimized for Android & iOS
+
+* ⚡ **Real-time Data**
+
+  * Powered by RTK Query (caching + auto refetch)
+
+---
+
+## 🚀 Quick Start
+
+### 📋 Prerequisites
+
+Ensure the following are installed:
+
+* Node.js (v16+)
+* npm or yarn
+* React Native CLI
+
+  ```bash
+  npm install -g react-native-cli
+  ```
+* Android Studio (Android development)
+* Xcode (iOS – macOS only)
+* JDK 11
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/bhc-jobs-mobile.git
+cd bhc-jobs-mobile
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Install iOS dependencies (macOS only)
+
+```bash
+cd ios
+bundle install
+bundle exec pod install
+cd ..
+```
+
+### 4. Setup environment variables
+
+Create a `.env` file in root:
+
+```env
+API_BASE_URL=https://dev.bhcjobs.com
+API_TIMEOUT=30000
+```
+
+---
+
+## ▶️ Running the App
+
+### Start Metro
+
+```bash
 npm start
-
-# OR using Yarn
+# or
 yarn start
 ```
 
-## Step 2: Build and run your app
+### Run on Android
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+```bash
+npm run android
+```
+
+### Run on iOS
+
+```bash
+npm run ios
+```
+
+> ⏳ First build may take several minutes.
+
+---
+
+## 📁 Project Structure
+
+```
+bhc-jobs-mobile/
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── screens/         # App screens
+│   ├── navigation/      # Navigation setup
+│   ├── store/           # Redux + RTK Query
+│   ├── context/         # Theme context
+│   ├── hooks/           # Custom hooks
+│   ├── utils/           # Helpers
+│   ├── constants/       # App constants
+│   └── types/           # TypeScript types
+├── android/
+├── ios/
+├── assets/
+├── .env
+├── tailwind.config.js
+├── babel.config.js
+├── metro.config.js
+└── package.json
+```
+
+---
+
+## 🎨 Styling (NativeWind)
+
+Uses **NativeWind (Tailwind CSS for React Native)**
+
+```tsx
+<View className="flex-1 bg-white dark:bg-gray-900">
+  <Text className="text-xl font-bold text-gray-800 dark:text-white">
+    Hello World
+  </Text>
+</View>
+```
+
+* Supports `dark:` variants
+* Utility-first styling
+
+---
+
+## 🌓 Dark Mode
+
+Implemented via **React Context**
+
+```tsx
+import { useTheme } from '../context/ThemeContext';
+
+const MyComponent = () => {
+  const { isDark, toggleTheme } = useTheme();
+
+  return (
+    <View className={isDark ? 'bg-gray-900' : 'bg-white'}>
+      <Text className={isDark ? 'text-white' : 'text-gray-800'}>
+        Themed text
+      </Text>
+    </View>
+  );
+};
+```
+
+💡 Tip: Persist using AsyncStorage for better UX.
+
+---
+
+## 🔐 Authentication Flow
+
+1. **Registration**
+
+   * name, email, phone
+   * passport number, DOB, gender
+   * password
+
+2. **OTP Verification**
+
+   * Phone-based OTP confirmation
+
+3. **Login**
+
+   * Email/phone + password
+
+4. **Token Handling**
+
+   * JWT stored in Redux
+   * Auto-attached to API requests
+
+---
+
+## 📡 API Integration (RTK Query)
+
+Centralized API layer via RTK Query:
+
+```tsx
+const { data, isLoading, error } = useGetJobsQuery();
+```
+
+### Error Handling
+
+`getErrorMessage()` utility:
+
+* Handles API errors
+* Handles network failures
+* Extracts user-friendly messages
+
+---
+
+## 🧪 Testing
+
+### Unit Tests
+
+```bash
+npm test
+```
+
+### E2E Testing
+
+Use Detox (manual setup required)
+
+---
+
+## 📦 Production Build
 
 ### Android
 
-```sh
-# Using npm
-npm run android
+```bash
+cd android
 
-# OR using Yarn
-yarn android
+# APK
+./gradlew assembleRelease
+
+# AAB (Play Store)
+./gradlew bundleRelease
 ```
+
+📍 Output:
+
+```
+android/app/build/outputs/
+```
+
+---
 
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+1. Open workspace:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+   ```
+   ios/BhcJobs.xcworkspace
+   ```
+2. Select device
+3. Product → Archive
+4. Export IPA via Xcode
 
-```sh
-bundle install
-```
+---
 
-Then, and every time you update your native dependencies, run:
+## 🐛 Troubleshooting
 
-```sh
-bundle exec pod install
-```
+| Issue                      | Solution                               |
+| -------------------------- | -------------------------------------- |
+| Metro cache issue          | `npx react-native start --reset-cache` |
+| Android SDK error          | Add `sdk.dir` in `local.properties`    |
+| iOS build error            | `pod deintegrate && pod install`       |
+| API not working (emulator) | `adb reverse tcp:8081 tcp:8081`        |
+| Dark mode not persisting   | Use AsyncStorage                       |
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## 📄 License
 
-# OR using Yarn
-yarn ios
-```
+This project is **proprietary and confidential**.
+Unauthorized use, copying, or distribution is prohibited.
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🙏 Acknowledgments
 
-## Step 3: Modify your app
+* React Native
+* Redux Toolkit & RTK Query
+* NativeWind
+* React Navigation
 
-Now that you have successfully run the app, let's make changes!
+---
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## ❤️ Built With
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+Crafted using **React Native CLI**
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+---
 
-## Congratulations! :tada:
+**Last Updated:** May 2026
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
