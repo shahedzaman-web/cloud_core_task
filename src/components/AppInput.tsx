@@ -57,7 +57,7 @@ export default function AppInput({
                     onChangeText={onChange}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
-                    className={isDark ? "flex-1 ml-2 text-base text-white" : "flex-1 ml-2 text-base"}
+                    className={isDark ? "flex-1 ml-2 text-base text-white" : "flex-1 ml-2 text-base text-gray-900"}
                     placeholderTextColor={isDark ? "#fff" : "#9ca3af"}
                 />
 

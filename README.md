@@ -67,8 +67,8 @@ Ensure the following are installed:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/bhc-jobs-mobile.git
-cd bhc-jobs-mobile
+git clone https://github.com/shahedzaman-web/cloud_core_task.git
+cd cloud_core_task
 ```
 
 ### 2. Install dependencies
@@ -88,14 +88,6 @@ bundle exec pod install
 cd ..
 ```
 
-### 4. Setup environment variables
-
-Create a `.env` file in root:
-
-```env
-API_BASE_URL=https://dev.bhcjobs.com
-API_TIMEOUT=30000
-```
 
 ---
 
